@@ -67,10 +67,10 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("## 👩‍💻 About Me")
+    st.markdown("Trying out new things in ML + NLP!")
     st.markdown(
         """
         <div style='text-align: center;'>
-            <p style='margin-top: -10px;'>Trying out new things in ML + NLP!</p>
             <a href='https://github.com/skyish21' target='_blank'>🔗 GitHub</a>&nbsp;|&nbsp;
             <a href='https://www.linkedin.com/in/ishika-sharma-79a67a326/' target='_blank'>💼 LinkedIn</a>
         </div>
