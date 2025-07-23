@@ -32,7 +32,8 @@ def encode_inputs(df):
 
 # === Sidebar Info ===
 with st.sidebar:
-    st.markdown("## 🧠 Salary Prediction")
+    st.markdown("## 📚 Info Panel")
+    st.markdown("---")
 
     st.markdown("""
     Welcome to **InsightPay**, a smart ML app that predicts salaries based on:
@@ -55,10 +56,27 @@ with st.sidebar:
     - Pandas 🐼
     """)
 
+    st.markdown("### 🧪 Model Info")
+    st.markdown("""
+    - LightGBM (trained on labeled dataset)
+    - LabelEncoded + Mapped inputs
+    """)
+
     st.markdown("---")
     st.markdown("💡 Try uploading a sample resume from below or use manual mode!")
 
-    st.markdown("👩‍💻 [GitHub](https://github.com/skyish21) | [LinkedIn](https://linkedin.com/in/ishika-sharma-79a67a326/)")
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style='text-align: right;'>
+            <h4>👩‍💻 <a name='about'>About Me</a></h4>
+            <p style='margin-top: -10px;'>Trying out new things in ML + NLP!</p>
+            <a href='https://github.com/skyish21' target='_blank'>🔗 GitHub</a>&nbsp;|&nbsp;
+            <a href='https://www.linkedin.com/in/ishika-sharma-79a67a326/' target='_blank'>💼 LinkedIn</a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 # === PAGE ===
@@ -194,16 +212,5 @@ if st.session_state.mode and gender and education and title and seniority and ex
         df_history = pd.DataFrame(st.session_state.history)
         st.download_button("⬇️ Download Prediction(s)", df_history.to_csv(index=False).encode("utf-8"), "predictions.csv")
 
-# === Footer ===
-st.markdown("---")
-st.markdown(
-    """
-    <div style='text-align: right;'>
-        <h4>👩‍💻 <a name='about'>About Me</a></h4>
-        <p style='margin-top: -10px;'>Trying out new things in ML + NLP!</p>
-        <a href='https://github.com/skyish21' target='_blank'>🔗 GitHub</a>&nbsp;|&nbsp;
-        <a href='https://www.linkedin.com/in/ishika-sharma-79a67a326/' target='_blank'>💼 LinkedIn</a>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+
+
