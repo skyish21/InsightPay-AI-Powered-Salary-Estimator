@@ -154,7 +154,7 @@ if st.session_state.mode and gender and education and title and seniority and ex
 
         encoded_df = encode_inputs(input_df.copy())
         prediction = model.predict(encoded_df)[0]
-        st.success(f"💰 Estimated Salary: ₹ {int(prediction):,}")
+        st.success(f"💰 Estimated Salary: $ {int(prediction):,}")
 
         # Store for download
         if "history" not in st.session_state:
