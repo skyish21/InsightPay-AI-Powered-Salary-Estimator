@@ -7,9 +7,9 @@ This project is an interactive **Streamlit** web app that predicts an individual
 ## 🚀 Features
 
 - 🔢 Predict salary using:
-  - Manual input fields
-  - Uploaded resume (PDF)
-  - Built-in sample resumes to test the app
+  1. Manual input fields
+  2. Uploaded resume (PDF)
+  3. Built-in sample resumes to test the app
 - 🧠 NLP-based parsing of resumes (via PyMuPDF or PDFMiner)
 - 🧮 Machine Learning model trained on structured salary data
 - 🧾 Download prediction history as CSV
@@ -21,19 +21,13 @@ This project is an interactive **Streamlit** web app that predicts an individual
 ## 📈 Model Info
 The model was trained on synthetic salary data using categorical and numeric features like:
 
-Gender
-
-Education
-
-Job Title
-
-Seniority
-
-Experience
-
-Location
-
-Age
+- Gender
+- Education
+- Job Title
+- Seniority
+- Experience
+- Location
+- Age
 
 ## 📂 Project Structure
 
@@ -86,14 +80,10 @@ streamlit run streamlit_app.py
 
 The app provides a dropdown to test 5 sample resumes:
 
-Junior Engineer
-
-Data Analyst
-
-Project Manager
-
-Senior Data Scientist
-
-Intern
+- Junior Engineer
+- Data Analyst
+- Project Manager
+- Senior Data Scientist
+- Intern
 
 These help showcase resume parsing and prediction without needing your own file.
