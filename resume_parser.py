@@ -1,9 +1,13 @@
-from pdfminer.high_level import extract_text
+import fitz  # PyMuPDF
 import re
 
 def extract_resume_text(pdf_path):
     try:
-        return extract_text(pdf_path)
+        doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
+        text = ""
+        for page in doc:
+            text += page.get_text()
+        return text
     except:
         return "❌ Could not parse or extract the resume"
     
@@ -28,17 +32,17 @@ def map_general_title(text):
 # Extract seniority
 def extract_seniority(text):
     text = text.lower()
-    # Seniority
     if 'intern' in text or 'entry level' in text or 'junior' in text:
-        seniority = 'Junior'
+        return 'Junior'
     elif 'senior' in text:
-        seniority = 'Senior'
+        return 'Senior'
     elif any(x in text for x in ['lead', 'principal', 'head']):
-        seniority = 'Lead'
+        return 'Lead'
     elif any(x in text for x in ['director', 'vp', 'chief', 'ceo', 'cto']):
-        seniority = 'Executive'
+        return 'Executive'
     else:
-        seniority = 'Mid'
+        return 'Mid'
+
     
 def parse_resume_features(text):
 
