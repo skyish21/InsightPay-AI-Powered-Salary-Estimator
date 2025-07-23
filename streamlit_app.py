@@ -88,7 +88,7 @@ st.markdown("""
 <div style="font-size:17px; line-height:1.6; padding-bottom:10px;">
 Welcome to <b>InsightPay</b> – an AI-powered salary prediction tool! 📊<br>
 Upload a resume <i>or</i> enter candidate/job details manually to estimate salary using machine learning.<br><br>
-Built using Python, NLP, and predictive modeling, this tool helps individuals and recruiters quickly assess compensation benchmarks.
+Built using Python, NLP, and predictive modeling, this tool helps individuals and recruiters quickly assess compensation benchmarks.<br><br>
 📌 Want to know how this app works? Check the sidebar!
 </div>
 """, unsafe_allow_html=True)
