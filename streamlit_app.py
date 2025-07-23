@@ -4,6 +4,8 @@ from sklearn.preprocessing import LabelEncoder
 from resume_parser import extract_resume_text, parse_resume_features
 import pickle
 
+# === Page Config ===
+st.set_page_config(page_title="Salary Predictor", layout="wide")
 
 # === Load trained model (replace with your actual path) ===
 model = pickle.load(open("salary_prediction_model.pkl", "rb"))
@@ -44,6 +46,13 @@ def encode_inputs(df):
 # === Front Page ===
 st.title("💼 Salary Prediction App")
 
+# About link (top-right corner)
+st.markdown("""
+    <div style='text-align: right; margin-top: -50px;'>
+        <a href="#about" style='font-size: 14px; text-decoration: none;'>🔗 About Me</a>
+    </div>
+""", unsafe_allow_html=True)
+
 st.markdown("Choose how you want to provide your job/candidate details:")
 
 st.markdown("---")
@@ -66,17 +75,16 @@ with col2:
 st.markdown("---")
 
 # MANUAL MODE
-if st.session_state.mode == "manual":
-    st.markdown("## ✍️ Manual Input")
-    st.markdown("Provide the details below manually:")
+if st.session_state.get("mode") == "manual":
+    st.header("📝 Manual Input")
 
-    gender = st.selectbox("Gender", ['Female', 'Male'])
-    education = st.selectbox("Education Level", list(education_map.keys()))
-    title = st.selectbox("General Title", list(le_title.classes_))
-    seniority = st.selectbox("Seniority Level", list(seniority_map.keys()))
-    experience = st.number_input("Years of Experience", 0, 50, step=1)
-    location = st.selectbox("Location", list(location_map.keys()))
-    age = st.number_input("Age", 18, 65, step=1)
+    gender = st.selectbox("Gender", ['Female', 'Male'], index=0, placeholder="Select gender")
+    education = st.selectbox("Education Level", list(education_map.keys()), index=1, placeholder="Select education")
+    title = st.selectbox("General Title", list(le_title.classes_), index=5, placeholder="Select title")
+    seniority = st.selectbox("Seniority Level", list(seniority_map.keys()), index=1, placeholder="Select seniority")
+    experience = st.number_input("Years of Experience", 0, 50, value=None, step=1, placeholder="Enter years of experience")
+    location = st.selectbox("Location", list(location_map.keys()), index=2, placeholder="Select location")
+    age = st.number_input("Age", 18, 65, value=None, step=1, placeholder="Enter age")
 
 # RESUME MODE
 elif st.session_state.mode == "resume":
@@ -113,4 +121,25 @@ if st.session_state.mode and st.button("🔮 Predict Salary"):
     # Encode and predict
     encoded_df = encode_inputs(input_df)
     prediction = model.predict(encoded_df)[0]
-    st.success(f"💰 Estimated Salary: ₹ {int(prediction):,}")
+    st.success(f"💰 Estimated Salary: $ {int(prediction):,}")
+
+    # Store & Download
+    if "history" not in st.session_state:
+        st.session_state.history = []
+
+    st.session_state.history.append({**input_df.iloc[0].to_dict(), "Predicted Salary": int(prediction)})
+
+    history_df = pd.DataFrame(st.session_state.history)
+    csv = history_df.to_csv(index=False).encode("utf-8")
+    st.download_button("⬇️ Download Prediction(s)", csv, "predictions.csv", "text/csv")
+
+# === Footer / About ===
+st.markdown("---")
+st.markdown("<h4 id='about'>👩‍💻 About Me</h4>", unsafe_allow_html=True)
+st.markdown("""
+Hi! I'm working on this salary prediction tool using machine learning and NLP techniques.
+
+🔗 Connect with me:  
+- [GitHub](https://github.com/skyish21)  
+- [LinkedIn](https://https://www.linkedin.com/in/ishika-sharma-79a67a326/)
+""")
