@@ -45,7 +45,6 @@ def encode_inputs(df):
 st.title("💼 Salary Prediction App")
 
 st.markdown("Choose how you want to provide your job/candidate details:")
-mode = st.radio("Select Input Mode", ["Manual Input", "Upload Resume"])
 
 st.markdown("---")
 
