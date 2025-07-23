@@ -79,11 +79,11 @@ elif st.session_state.mode == "resume":
         try:
             gender_idx = ['Female', 'Male'].index(parsed.get("Gender", "Female"))
         except ValueError:
-            gender_idx = 0
+            gender_idx = None
         try:
             edu_idx = list(education_map.keys()).index(parsed.get("Education Level", "Bachelor"))
         except ValueError:
-            edu_idx = 1
+            edu_idx = None
         try:
             title_idx = list(le_title.classes_).index(parsed.get("General Title", "Other"))
         except ValueError:
@@ -91,7 +91,7 @@ elif st.session_state.mode == "resume":
         try:
             seniority_idx = list(seniority_map.keys()).index(parsed.get("Seniority Level", "Mid"))
         except ValueError:
-            seniority_idx = 1
+            seniority_idx = None
 
         gender = st.selectbox("Gender", ['Female', 'Male'], index=gender_idx)
         education = st.selectbox("Education Level", list(education_map.keys()), index=edu_idx)
