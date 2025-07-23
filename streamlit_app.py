@@ -31,7 +31,6 @@ def encode_inputs(df):
 
 
 # === PAGE ===
-st.set_page_config(page_title="Salary Prediction App", layout="wide")
 st.title("💼 Salary Prediction App")
 st.markdown("Select how you want to enter job/candidate details:")
 
@@ -129,12 +128,21 @@ if st.session_state.mode and gender and education and title and seniority and ex
         csv = history_df.to_csv(index=False).encode("utf-8")
         st.download_button("⬇️ Download Prediction(s)", csv, "predictions.csv", "text/csv")
 
-# === Footer ===
-st.markdown("---")
-st.markdown("<h4 id='about' style='text-align:right;'>👩‍💻 About Me</h4>", unsafe_allow_html=True)
-st.markdown("""
-<div style='text-align:right'>
-Trying out new things!<br>
-🔗 [GitHub](https://github.com/skyish21) | [LinkedIn](https://www.linkedin.com/in/ishika-sharma-79a67a326/)
-</div>
-""", unsafe_allow_html=True)
+# === Footer / About Me Section ===
+st.markdown("---", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div style='text-align: right;'>
+        <h4>👩‍💻 <a name='about'>About Me</a></h4>
+        <p style='margin-top: -10px;'>Trying out new things in ML + NLP!</p>
+        <a href='https://github.com/skyish21' target='_blank' style='text-decoration: none;'>
+            🔗 GitHub
+        </a>&nbsp;|&nbsp;
+        <a href='https://www.linkedin.com/in/ishika-sharma-79a67a326/' target='_blank' style='text-decoration: none;'>
+            💼 LinkedIn
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
