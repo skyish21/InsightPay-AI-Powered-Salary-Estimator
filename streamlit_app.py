@@ -32,7 +32,6 @@ def encode_inputs(df):
 
 
 # === PAGE ===
-st.set_page_config(page_title="Salary Prediction", layout="wide")
 st.title("💼 Salary Prediction App")
 st.markdown("Select how you want to enter job/candidate details:")
 
