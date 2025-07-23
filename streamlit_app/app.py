@@ -1,16 +1,10 @@
 import streamlit as st
 
-st.set_page_config(page_title="Salary Prediction App", layout="centered")
+st.set_page_config(page_title="Salary Prediction App", layout="wide")
 
-st.markdown("# 💼 Salary Predictor")
-st.markdown("#### Choose how you want to continue:")
+st.title("💼 Salary Prediction App")
+st.markdown("Choose how you want to continue:")
 
-col1, col2 = st.columns(2)
-
-with col1:
-    if st.button("📝 Manual Input", use_container_width=True):
-        st.switch_page("pages/manual_input.py")
-
-with col2:
-    if st.button("📄 Upload Resume", use_container_width=True):
-        st.switch_page("pages/resume_upload.py")
+st.markdown("- 📥 Use sidebar to navigate to:")
+st.markdown("  - ✍️ Manual Input")
+st.markdown("  - 📄 Resume Upload")
