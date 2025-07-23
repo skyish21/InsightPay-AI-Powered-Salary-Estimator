@@ -30,6 +30,36 @@ def encode_inputs(df):
     df['Seniority Level'] = df['Seniority Level'].map(seniority_map)
     return df
 
+# === Sidebar Info ===
+with st.sidebar:
+    st.markdown("## 🧠 Salary Prediction")
+
+    st.markdown("""
+    Welcome to **InsightPay**, a smart ML app that predicts salaries based on:
+    - 📄 Uploaded resumes
+    - 📝 Manual form inputs
+
+    ### 🔍 Features:
+    - Resume parsing using NLP
+    - Title, seniority & experience extraction
+    - Clean UI with dual input modes
+    - CSV export of predictions
+    """)
+
+    st.markdown("### 🛠 Built With")
+    st.markdown("""
+    - Python 🐍  
+    - Streamlit ⚡  
+    - scikit-learn 🔧  
+    - PDFMiner / PyMuPDF 📄  
+    - Pandas 🐼
+    """)
+
+    st.markdown("---")
+    st.markdown("💡 Try uploading a sample resume from below or use manual mode!")
+
+    st.markdown("👩‍💻 [GitHub](https://github.com/skyish21) | [LinkedIn](https://linkedin.com/in/ishika-sharma-79a67a326/)")
+
 
 # === PAGE ===
 st.title("InsightPay 💰 — AI-Powered Salary Estimator")
