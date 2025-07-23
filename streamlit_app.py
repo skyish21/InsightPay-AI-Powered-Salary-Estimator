@@ -66,10 +66,10 @@ with st.sidebar:
     st.markdown("💡 Try uploading a sample resume from below or use manual mode!")
 
     st.markdown("---")
+    st.markdown("## 👩‍💻 About Me")
     st.markdown(
         """
         <div style='text-align: right;'>
-            <h4>👩‍💻 <a name='about'>About Me</a></h4>
             <p style='margin-top: -10px;'>Trying out new things in ML + NLP!</p>
             <a href='https://github.com/skyish21' target='_blank'>🔗 GitHub</a>&nbsp;|&nbsp;
             <a href='https://www.linkedin.com/in/ishika-sharma-79a67a326/' target='_blank'>💼 LinkedIn</a>
