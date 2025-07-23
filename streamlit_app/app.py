@@ -9,8 +9,8 @@ col1, col2 = st.columns(2)
 
 with col1:
     if st.button("📝 Manual Input", use_container_width=True):
-        st.switch_page("pages/1_Manual_Input.py")
+        st.switch_page("pages/manual_input.py")
 
 with col2:
     if st.button("📄 Upload Resume", use_container_width=True):
-        st.switch_page("pages/2_Resume_Upload.py")
+        st.switch_page("pages/resume_upload.py")
