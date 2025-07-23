@@ -3,6 +3,7 @@
 This project is an interactive **Streamlit** web app that predicts an individual's salary based on their job-related information or uploaded resume. It uses **machine learning** models and **natural language processing (NLP)** to extract and encode key features from resumes.
 
 **Streamlit App**
+
 https://salary-prediction-liknwwrgipqk898ad7ky9x.streamlit.app/
 
 ---
