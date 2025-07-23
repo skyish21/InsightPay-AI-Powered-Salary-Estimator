@@ -4,8 +4,6 @@ from sklearn.preprocessing import LabelEncoder
 from resume_parser import extract_resume_text, parse_resume_features
 import pickle
 
-# === Page Config ===
-st.set_page_config(page_title="Salary Predictor", layout="wide")
 
 # === Load trained model (replace with your actual path) ===
 model = pickle.load(open("salary_prediction_model.pkl", "rb"))
@@ -46,13 +44,6 @@ def encode_inputs(df):
 # === Front Page ===
 st.title("💼 Salary Prediction App")
 
-# About link (top-right corner)
-st.markdown("""
-    <div style='text-align: right; margin-top: -50px;'>
-        <a href="#about" style='font-size: 14px; text-decoration: none;'>🔗 About Me</a>
-    </div>
-""", unsafe_allow_html=True)
-
 st.markdown("Choose how you want to provide your job/candidate details:")
 
 st.markdown("---")
@@ -92,19 +83,60 @@ elif st.session_state.mode == "resume":
     uploaded_file = st.file_uploader("Upload your resume (PDF)", type=["pdf"])
 
     if uploaded_file:
-        with st.spinner("Extracting details..."):
+        with st.spinner("🔍 Parsing resume..."):
             resume_text = extract_resume_text(uploaded_file)
             parsed = parse_resume_features(resume_text)
 
-        st.markdown("### 🧾 Parsed & Editable Details")
+        st.subheader("📋 Parsed Resume Info (Editable)")
 
-        gender = st.selectbox("Gender", ['Female', 'Male'], index=['Female', 'Male'].index(parsed.get("Gender", "Female")))
-        education = st.selectbox("Education Level", list(education_map.keys()), index=list(education_map.keys()).index(parsed.get("Education Level", "Bachelor")))
-        title = st.selectbox("General Title", list(le_title.classes_), index=list(le_title.classes_).index(parsed.get("General Title", "Other")))
-        seniority = st.selectbox("Seniority Level", list(seniority_map.keys()), index=list(seniority_map.keys()).index(parsed.get("Seniority Level", "Mid")))
-        experience = st.number_input("Years of Experience", 0, 50, value=parsed.get("Years of Experience", 0), step=1)
-        location = st.selectbox("Location", list(location_map.keys()))
-        age = st.number_input("Age", 18, 65, step=1)
+        # --- Handle possible missing values ---
+        try:
+            gender_idx = ['Female', 'Male'].index(parsed.get("Gender", "Female"))
+        except ValueError:
+            gender_idx = 0
+
+        try:
+            edu_idx = list(education_map.keys()).index(parsed.get("Education Level", "Bachelor"))
+        except ValueError:
+            edu_idx = 1
+
+        try:
+            title_idx = list(le_title.classes_).index(parsed.get("General Title", "Other"))
+        except ValueError:
+            title_idx = list(le_title.classes_).index("Other")
+
+        try:
+            seniority_idx = list(seniority_map.keys()).index(parsed.get("Seniority Level", "Mid"))
+        except ValueError:
+            seniority_idx = 1
+
+    # === Editable Fields ===
+    gender = st.selectbox("Gender", ['Female', 'Male'], index=gender_idx)
+    education = st.selectbox("Education Level", list(education_map.keys()), index=edu_idx)
+    title = st.selectbox("General Title", list(le_title.classes_), index=title_idx)
+    seniority = st.selectbox("Seniority Level", list(seniority_map.keys()), index=seniority_idx)
+    experience = st.number_input("Years of Experience", 0, 50, value=parsed.get("Years of Experience", 0), step=1)
+    location = st.selectbox("Location", list(location_map.keys()), index=0)
+    age = st.number_input("Age", 18, 65, value=parsed.get("Age", 25), step=1)
+
+    # === Predict Button ===
+    if st.button("🔮 Predict Salary"):
+        input_df = pd.DataFrame([{
+            "Gender": gender,
+            "Education Level": education,
+            "General Title": title,
+            "Seniority Level": seniority,
+            "Years of Experience": experience,
+            "Location": location,
+            "Age": age
+        }])
+
+        # Encoding
+        input_df['Gender'] = le_gender.transform(input_df['Gender'])
+        input_df['General Title'] = le_title.transform(input_df['General Title'])
+        input_df['Education Level'] = input_df['Education Level'].map(education_map)
+        input_df['Location'] = input_df['Location'].map(location_map)
+        input_df['Seniority Level'] = input_df['Seniority Level'].map(seniority_map)
 
 # === Prediction Section ===
 if st.session_state.mode and st.button("🔮 Predict Salary"):
