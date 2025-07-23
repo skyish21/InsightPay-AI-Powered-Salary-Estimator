@@ -33,6 +33,8 @@ The model was trained on synthetic salary data using categorical and numeric fea
 - Location
 - Age
 
+---
+
 ## 📂 Project Structure
 
 ```bash
@@ -80,6 +82,7 @@ pip install -r requirements.txt
 ```bash
 streamlit run streamlit_app.py
 ```
+---
 
 ## 📚 Sample Resume Testing
 
