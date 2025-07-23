@@ -31,6 +31,7 @@ The model was trained on synthetic salary data using categorical and numeric fea
 
 ## 📂 Project Structure
 
+```bash
 salary-prediction-app/
 │
 ├── streamlit_app.py # Main app logic
@@ -44,7 +45,7 @@ salary-prediction-app/
 │ ├── resume_scientist.pdf
 │ └── resume_intern.pdf
 └── README.md # Project overview
-
+```
 
 ---
 
