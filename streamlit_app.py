@@ -71,7 +71,7 @@ with st.sidebar:
     st.markdown(
         """
         <div style='text-align: center;'>
-            <a href='https://github.com/skyish21' target='_blank'>🔗 GitHub</a>&nbsp;|&nbsp;
+            <a href='https://github.com/skyish21' target='_blank'>GitHub 🔗</a>&nbsp;|&nbsp;
             <a href='https://www.linkedin.com/in/ishika-sharma-79a67a326/' target='_blank'>💼 LinkedIn</a>
         </div>
         """,
