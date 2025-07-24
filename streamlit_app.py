@@ -185,7 +185,12 @@ elif st.session_state.mode == "resume":
         title = st.selectbox("General Title", list(le_title.classes_), index=title_idx)
         seniority = st.selectbox("Seniority Level", list(seniority_map.keys()), index=seniority_idx)
         experience = st.number_input("Years of Experience", 0, 50, value=parsed.get("Years of Experience", 0), step=1)
-        location = st.selectbox("Location", list(location_map.keys()), None)
+        options = ["-- Select Location --"] + list(location_map.keys())
+        location = st.selectbox("Location", options)
+        
+        # Treat the placeholder as None
+        if location == "-- Select Location --":
+            location = None
         age = st.number_input("Age", 18, 65, value=parsed.get("Age", 25), step=1)
 
 # === PREDICT BUTTON ===
