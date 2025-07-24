@@ -71,7 +71,7 @@ salary-prediction-app/
    ```bash
    git clone https://github.com/yourusername/salary-prediction-app.git
    cd salary-prediction-app
-   ~~~
+   ```
 
 2. **Install dependencies**
 ```bash
